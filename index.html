@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f8fc" />
+    <meta name="description" content="衡渡跨境財富規劃互動原型：風險測評、目標設定與初步配置示意。" />
+    <title>衡渡｜跨境財富規劃</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+HK:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="衡渡首頁">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span class="brand-name">衡渡</span>
+        <span class="brand-divider"></span>
+        <span class="brand-subtitle">WEALTH PLANNER</span>
+      </a>
+      <nav class="top-nav" aria-label="主選單">
+        <a href="#planner">規劃體驗</a>
+        <a href="#how-it-works">運作方式</a>
+        <a href="#trust-note">重要說明</a>
+      </nav>
+      <button class="header-action" id="restart-top" type="button">重新開始 <span aria-hidden="true">↗</span></button>
+    </header>
+
+    <main id="top">
+      <section class="hero page-width">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR CROSS-BORDER WEALTH MAP</div>
+          <h1>讓下一步財富規劃，<br /><span>清晰而有方向。</span></h1>
+          <p class="hero-description">用幾個簡單問題，整理你的風險取向、資產目標與傳承關注。先看一份可討論的初步藍圖，再決定下一步。</p>
+          <div class="hero-proof">
+            <span class="proof-icon">✦</span>
+            <span>約 2 分鐘完成</span>
+            <span class="proof-separator"></span>
+            <span>無需提交身份資料</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-back"></div>
+          <div class="orbit orbit-front"></div>
+          <div class="art-core"><span class="core-glow"></span><span class="core-mark">衡</span></div>
+          <div class="art-label label-top"><span class="label-dot teal"></span> 資產配置 <b>01</b></div>
+          <div class="art-label label-bottom"><span class="label-dot gold"></span> 家族傳承 <b>02</b></div>
+          <span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✧</span>
+        </div>
+      </section>
+
+      <section class="planner page-width" id="planner">
+        <div class="planner-main">
+          <div class="planner-heading">
+            <div>
+              <p class="section-kicker">INTERACTIVE PLANNER <span>·</span> <span id="step-caption">STEP 01 / 03</span></p>
+              <h2 id="view-heading">先了解你的風險取向</h2>
+              <p class="section-description" id="view-description">沒有標準答案。按直覺選擇最接近你的情況，我們會用作初步規劃參考。</p>
+            </div>
+            <div class="privacy-chip"><span>⌁</span> 資料僅供本次示意</div>
+          </div>
+
+          <div class="stepper" aria-label="規劃進度">
+            <div class="stepper-item active" data-step-indicator="1"><span class="step-number">01</span><span>風險取向</span></div>
+            <span class="stepper-line"></span>
+            <div class="stepper-item" data-step-indicator="2"><span class="step-number">02</span><span>目標與偏好</span></div>
+            <span class="stepper-line"></span>
+            <div class="stepper-item" data-step-indicator="3"><span class="step-number">03</span><span>方案藍圖</span></div>
+          </div>
+
+          <section class="flow-view active" data-view="1" aria-labelledby="view-heading">
+            <div class="question-list">
+              <fieldset class="question-card">
+                <legend><span class="question-index">01</span><span>如果投資組合短期下跌約 10%，你較可能？</span></legend>
+                <div class="choice-grid three-col">
+                  <button class="choice-card" type="button" data-question="1" data-score="1" aria-pressed="false"><span class="choice-icon icon-calm">↘</span><span class="choice-title">先減少波動</span><span class="choice-help">考慮降低風險</span></button>
+                  <button class="choice-card selected" type="button" data-question="1" data-score="2" aria-pressed="true"><span class="choice-icon icon-balance">↔</span><span class="choice-title">觀察後再決定</span><span class="choice-help">接受適度起伏</span></button>
+                  <button class="choice-card" type="button" data-question="1" data-score="3" aria-pressed="false"><span class="choice-icon icon-growth">↗</span><span class="choice-title">繼續持有或加注</span><span class="choice-help">著眼長期機會</span></button>
+                </div>
+              </fieldset>
+
+              <fieldset class="question-card">
+                <legend><span class="question-index">02</span><span>這筆資金大約何時會用到？</span></legend>
+                <div class="choice-grid three-col">
+                  <button class="choice-card" type="button" data-question="2" data-score="1" aria-pressed="false"><span class="choice-icon icon-calm">◷</span><span class="choice-title">3 年內</span><span class="choice-help">需要較高流動性</span></button>
+                  <button class="choice-card selected" type="button" data-question="2" data-score="2" aria-pressed="true"><span class="choice-icon icon-balance">◷</span><span class="choice-title">3–7 年</span><span class="choice-help">中期安排為主</span></button>
+                  <button class="choice-card" type="button" data-question="2" data-score="3" aria-pressed="false"><span class="choice-icon icon-growth">◷</span><span class="choice-title">7 年以上</span><span class="choice-help">可以較長線規劃</span></button>
+                </div>
+              </fieldset>
+
+              <fieldset class="question-card">
+                <legend><span class="question-index">03</span><span>你過去接觸過哪些理財方式？</span></legend>
+                <div class="choice-grid three-col">
+                  <button class="choice-card" type="button" data-question="3" data-score="1" aria-pressed="false"><span class="choice-icon icon-calm">▤</span><span class="choice-title">主要是存款</span><span class="choice-help">希望先理解更多</span></button>
+                  <button class="choice-card selected" type="button" data-question="3" data-score="2" aria-pressed="true"><span class="choice-icon icon-balance">▥</span><span class="choice-title">基金或債券</span><span class="choice-help">有一定投資經驗</span></button>
+                  <button class="choice-card" type="button" data-question="3" data-score="3" aria-pressed="false"><span class="choice-icon icon-growth">▦</span><span class="choice-title">股票等波動資產</span><span class="choice-help">熟悉市場波動</span></button>
+                </div>
+              </fieldset>
+            </div>
+            <div class="risk-preview" aria-live="polite">
+              <span class="preview-icon">◎</span>
+              <span><b>目前初步傾向</b><small id="risk-preview-text">平衡型 · 在成長與波動之間取得平衡</small></span>
+              <span class="preview-arrow">→</span>
+            </div>
+            <div class="flow-actions">
+              <span class="quiet-note">這是初步自我評估，不取代正式適合性評估。</span>
+              <button class="button-primary" id="to-step-two" type="button">設定我的目標 <span>→</span></button>
+            </div>
+          </section>
+
+          <section class="flow-view" data-view="2" aria-labelledby="view-heading" hidden>
+            <div class="goal-grid">
+              <label class="field-block">
+                <span class="field-label">預計規劃金額</span>
+                <span class="field-hint">輸入大約數字即可</span>
+                <span class="amount-input-wrap"><select id="currency" aria-label="貨幣"><option value="HKD">HKD</option><option value="USD">USD</option><option value="SGD">SGD</option></select><input id="amount" type="number" inputmode="numeric" min="1000" step="1000" value="500000" aria-label="預計規劃金額" /></span>
+              </label>
+              <label class="field-block">
+                <span class="field-label">大約規劃年期</span>
+                <span class="field-hint">按資金用途選擇</span>
+                <span class="select-wrap"><select id="horizon"><option value="3">3 年</option><option value="5">5 年</option><option value="10" selected>10 年</option><option value="15">15 年</option><option value="20">20 年</option></select><span aria-hidden="true">⌄</span></span>
+              </label>
+            </div>
+
+            <div class="form-section">
+              <div class="subsection-heading"><div><h3>你希望達到的回報目標？</h3><p>這是你的期望目標，不代表預期或保證回報。</p></div><span class="subsection-number">A</span></div>
+              <div class="return-options" role="group" aria-label="目標年化回報">
+                <button class="return-option" data-return="2–4%" type="button" aria-pressed="false"><b>2–4%</b><span>穩健累積</span></button>
+                <button class="return-option selected" data-return="4–6%" type="button" aria-pressed="true"><b>4–6%</b><span>平衡成長</span></button>
+                <button class="return-option" data-return="6–8%+" type="button" aria-pressed="false"><b>6–8%+</b><span>較高目標・較大波動</span></button>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="subsection-heading"><div><h3>選擇你想了解的規劃模組</h3><p>可以多選；傳承安排屬規劃議題，不計入投資比例。</p></div><span class="subsection-number">B</span></div>
+              <div class="product-grid">
+                <button class="product-card selected" data-product="deposit" type="button" aria-pressed="true"><span class="product-symbol symbol-deposit">▤</span><span class="product-copy"><b>銀行定期</b><small>流動性・利率比較</small></span><span class="product-check">✓</span></button>
+                <button class="product-card selected" data-product="fund" type="button" aria-pressed="true"><span class="product-symbol symbol-fund">◌</span><span class="product-copy"><b>基金配置</b><small>分散投資・波動管理</small></span><span class="product-check">✓</span></button>
+                <button class="product-card selected" data-product="insurance" type="button" aria-pressed="true"><span class="product-symbol symbol-insurance">◇</span><span class="product-copy"><b>保險保障</b><small>保障需求・長期安排</small></span><span class="product-check">✓</span></button>
+                <button class="product-card selected" data-product="legacy" type="button" aria-pressed="true"><span class="product-symbol symbol-legacy">⌘</span><span class="product-copy"><b>傳承規劃</b><small>受益人・跨境安排檢視</small></span><span class="product-check">✓</span></button>
+              </div>
+            </div>
+
+            <div class="form-section plan-section">
+              <div class="subsection-heading"><div><h3>先選一個預設方案作比較起點</h3><p>以下是示意配置，不代表任何特定產品。</p></div><span class="subsection-number">C</span></div>
+              <div class="plan-options" role="group" aria-label="選擇預設方案">
+                <button class="plan-option" data-plan="liquidity" type="button" aria-pressed="false"><span class="plan-topline"><span class="plan-glyph glyph-calm">01</span><span class="plan-fit">適合短期用途</span></span><b>流動守成</b><small>優先考慮流動性與資產穩定</small><span class="mini-allocation"><i style="width:50%"></i><i style="width:25%"></i><i style="width:25%"></i></span><span class="mini-legend">定期 50 <em>·</em> 基金 25 <em>·</em> 保障 25</span></button>
+                <button class="plan-option selected" data-plan="balanced" type="button" aria-pressed="true"><span class="plan-topline"><span class="plan-glyph glyph-balanced">02</span><span class="plan-fit">綜合取向</span></span><b>平衡成長</b><small>兼顧配置分散與中長期累積</small><span class="mini-allocation"><i style="width:30%"></i><i style="width:45%"></i><i style="width:25%"></i></span><span class="mini-legend">定期 30 <em>·</em> 基金 45 <em>·</em> 保障 25</span></button>
+                <button class="plan-option" data-plan="growth" type="button" aria-pressed="false"><span class="plan-topline"><span class="plan-glyph glyph-growth">03</span><span class="plan-fit">長線取向</span></span><b>長線增值</b><small>較多配置於波動較高的基金</small><span class="mini-allocation"><i style="width:15%"></i><i style="width:65%"></i><i style="width:20%"></i></span><span class="mini-legend">定期 15 <em>·</em> 基金 65 <em>·</em> 保障 20</span></button>
+              </div>
+            </div>
+            <p class="inline-error" id="form-error" role="alert" hidden>請至少選擇一項資產配置模組（銀行定期、基金或保險），再生成方案。</p>
+            <div class="flow-actions">
+              <button class="button-quiet" id="back-to-one" type="button"><span>←</span> 返回測評</button>
+              <button class="button-primary" id="generate-plan" type="button">生成我的方案 <span>✦</span></button>
+            </div>
+          </section>
+
+          <section class="flow-view results-view" data-view="3" aria-labelledby="view-heading" hidden>
+            <div class="result-banner">
+              <div class="result-symbol">✦</div>
+              <div><span class="result-overline">YOUR STARTING BLUEPRINT</span><h3>你的初步財富藍圖已準備好</h3><p>以下內容根據你剛才的回答整理，可作為與專業顧問討論的起點。</p></div>
+              <button class="edit-result" id="edit-plan" type="button">← 修改答案</button>
+            </div>
+            <div class="result-metrics">
+              <div class="metric-card"><span>初步風險取向</span><b id="result-risk">平衡型</b><small id="risk-explanation">重視成長，同時留意資金波動</small></div>
+              <div class="metric-card"><span>規劃目標</span><b id="result-return">4–6%</b><small>你的目標年化回報區間</small></div>
+              <div class="metric-card"><span>規劃年期</span><b id="result-years">10 年</b><small id="result-amount">HKD 500,000 起</small></div>
+            </div>
+
+            <div class="result-columns">
+              <article class="result-card allocation-card">
+                <div class="card-heading"><div><span class="card-kicker">01 / ALLOCATION</span><h3 id="result-plan-name">平衡成長</h3></div><span class="fit-badge" id="plan-fit-badge">與風險取向相符</span></div>
+                <p class="card-intro">依你選擇的規劃模組，把預設方案整理成一份配置示意。</p>
+                <div class="allocation-content">
+                  <div class="donut-wrap"><div class="donut-chart" id="donut-chart"><div class="donut-hole"><b id="donut-count">3</b><span>配置模組</span></div></div></div>
+                  <div class="allocation-legend" id="allocation-legend"></div>
+                </div>
+                <div class="allocation-footnote" id="legacy-note"><span>＋</span> 傳承安排另列為規劃檢視項目，不佔投資配置比例。</div>
+              </article>
+              <article class="result-card projection-card">
+                <div class="card-heading"><div><span class="card-kicker">02 / SCENARIO</span><h3>簡化情境示意</h3></div><span class="sparkline-icon">↗</span></div>
+                <p class="card-intro">只對銀行定期及基金部分作複利示意，方便理解時間與回報假設的關係。</p>
+                <div class="projection-number"><span id="projection-currency">HKD</span><b id="projection-value">—</b></div>
+                <div class="projection-label">年期末情境金額 <span id="projection-years-label">· 10 年</span></div>
+                <div class="projection-chart" aria-hidden="true"><div class="chart-gridline"></div><div class="chart-gridline"></div><svg viewBox="0 0 420 94" preserveAspectRatio="none"><defs><linearGradient id="area-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#35c9b3" stop-opacity=".28"/><stop offset="100%" stop-color="#35c9b3" stop-opacity="0"/></linearGradient></defs><path class="chart-area" d="M0,80 C55,76 72,66 112,68 S178,48 214,54 S283,30 320,39 S376,12 420,16 L420,94 L0,94Z"/><path class="chart-line" d="M0,80 C55,76 72,66 112,68 S178,48 214,54 S283,30 320,39 S376,12 420,16"/><circle cx="420" cy="16" r="4"/></svg></div>
+                <div class="projection-range"><span>投入示意 <b id="invested-display">HKD 500,000</b></span><span>情境年化假設 <b id="scenario-rate">4.3%</b></span></div>
+                <div class="assumption-note"><span>ⓘ</span><span>純示例計算，並非收益預測或保證；不含保險保單利益、費用、稅務及匯率影響。實際結果取決於產品條款及市場。</span></div>
+              </article>
+            </div>
+
+            <article class="result-card ai-card" aria-labelledby="ai-title">
+              <div class="ai-card-heading">
+                <div class="ai-heading-icon">✦</div>
+                <div><span class="card-kicker">03 / AI EXPLAINER</span><h3 id="ai-title">你的方案 AI 分析</h3></div>
+                <span class="ai-status" id="ai-status">按需使用</span>
+              </div>
+              <p class="ai-intro">生成方案後，AI 會按你的風險取向、回報目標和配置偏好自動整理分析；你也可以在下方繼續追問。送出時，規劃摘要及問題會傳送至配置的對話服務，請勿輸入身份資料。</p>
+              <div class="ai-messages" id="ai-messages" aria-live="polite" aria-label="AI 分析與對話內容"></div>
+              <form class="ai-form" id="ai-form">
+                <label class="sr-only" for="ai-question">輸入你想了解的問題</label>
+                <textarea id="ai-question" maxlength="700" rows="2" placeholder="例如：這個方案有哪些地方值得我再確認？" required></textarea>
+                <button class="button-primary ai-submit" type="submit" id="ai-submit">詢問 AI <span>↑</span></button>
+              </form>
+              <p class="ai-error" id="ai-error" role="alert" hidden></p>
+              <p class="ai-disclaimer">AI 內容只供一般資訊參考，可能不完整或有誤，不構成投資、保險、法律或稅務建議。</p>
+            </article>
+
+            <article class="result-card next-steps-card">
+              <div class="next-steps-title"><span class="card-kicker">04 / NEXT CONVERSATION</span><h3>建議下一步先釐清這些問題</h3><p>跨境安排通常不只看回報；先把需求說清楚，討論會更有效率。</p></div>
+              <div class="next-step-list" id="next-step-list">
+                <div class="next-step"><span class="next-step-number">01</span><span><b>資金用途與流動性</b><small>哪些資金需要在短期內使用？</small></span><span class="step-arrow">↗</span></div>
+                <div class="next-step"><span class="next-step-number">02</span><span><b>保障與受益人安排</b><small>家庭成員、保單受益人是否需要更新？</small></span><span class="step-arrow">↗</span></div>
+                <div class="next-step"><span class="next-step-number">03</span><span><b>跨境稅務與傳承檢視</b><small>居住地、資產所在地及適用規則需要確認。</small></span><span class="step-arrow">↗</span></div>
+              </div>
+            </article>
+            <div class="flow-actions result-actions">
+              <button class="button-quiet" id="restart-bottom" type="button"><span>↺</span> 重新規劃</button>
+              <button class="button-primary" id="save-summary" type="button">複製方案摘要 <span>⎘</span></button>
+            </div>
+            <p class="copy-feedback" id="copy-feedback" aria-live="polite"></p>
+          </section>
+        </div>
+
+        <aside class="side-panel" id="how-it-works">
+          <div class="side-top"><span class="side-orb">✧</span><span class="side-overline">A CLEARER START</span></div>
+          <h3>把複雜的事，<br />拆成清楚的幾步。</h3>
+          <p class="side-description">這個小工具先幫你整理方向，不急著推銷產品。</p>
+          <div class="side-steps">
+            <div class="side-step"><span class="side-step-icon">⌁</span><span><b>了解你的取向</b><small>風險、時間與經驗</small></span></div>
+            <div class="side-step"><span class="side-step-icon">◈</span><span><b>整理目標與偏好</b><small>回報目標及關注模組</small></span></div>
+            <div class="side-step"><span class="side-step-icon">✳</span><span><b>生成討論藍圖</b><small>配置示意與待確認問題</small></span></div>
+          </div>
+          <div class="side-divider"></div>
+          <div class="side-quote"><span class="quote-mark">“</span><p>好的規劃，先從問對問題開始。</p></div>
+          <div class="side-foot"><span class="side-foot-dot"></span> 你的答案只在這個頁面即時計算</div>
+        </aside>
+      </section>
+
+      <section class="disclaimer page-width" id="trust-note"><span class="disclaimer-mark">i</span><p><b>原型與重要說明</b><br />此互動頁面為概念演示，不構成投資、保險、法律或稅務建議；不是對任何產品的招攬或推薦。配置比例與情境數字僅供理解流程，並非實際產品資料。正式推出前，應由持牌及合資格專業人士完成適合性、產品披露、個人資料與跨境合規審查。</p><span class="disclaimer-tag">DEMO · FOR DISCUSSION</span></section>
+
+      <footer class="footer page-width"><a class="footer-brand" href="#top">衡渡<span>WEALTH PLANNER</span></a><span>清晰規劃，從一次對話開始。</span><span>© 2026 衡渡概念原型</span></footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
