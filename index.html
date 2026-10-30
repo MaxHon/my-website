@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f5f8fc" />
+    <meta name="theme-color" content="#081317" />
     <meta name="description" content="衡渡跨境財富規劃互動原型：風險測評、目標設定與初步配置示意。" />
     <title>衡渡｜跨境財富規劃</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,6 +14,7 @@
   <body>
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
+    <div class="system-noise" aria-hidden="true"><span>NODE / HENGDU_07</span><span>SECURE CHANNEL</span><span id="noise-clock">00:00:00</span></div>
     <header class="topbar">
       <a class="brand" href="#top" aria-label="衡渡首頁">
         <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -50,6 +51,24 @@
           <div class="art-label label-bottom"><span class="label-dot gold"></span> 家族傳承 <b>02</b></div>
           <span class="art-spark spark-one">✦</span><span class="art-spark spark-two">✧</span>
         </div>
+      </section>
+
+      <section class="signal-board page-width" aria-label="規劃導覽示意">
+        <div class="signal-board-head"><span>SESSION / 07</span><b>WEALTH PLANNING NAVIGATION</b><span>示意資料 <i></i></span></div>
+        <div class="signal-map">
+          <div class="signal-column signal-column-left"><div class="signal-column-title">YOUR INPUTS <small>由本次選擇整理</small></div>
+            <div class="signal-node"><span class="node-flag">01</span><span><b>風險取向</b><small id="signal-risk-detail">初步問卷結果</small></span><i class="node-bars"><em></em><em></em><em></em></i></div>
+            <div class="signal-node"><span class="node-flag">02</span><span><b>規劃年期</b><small id="signal-horizon">由你設定的時間範圍</small></span><i class="node-bars"><em></em><em></em><em></em></i></div>
+            <div class="signal-node"><span class="node-flag">03</span><span><b>關注模組</b><small>按所選項目整理</small></span><i class="node-bars"><em></em><em></em><em></em></i></div>
+          </div>
+          <div class="signal-network" aria-hidden="true"><svg viewBox="0 0 520 232" preserveAspectRatio="none"><path d="M0 36 C95 36 110 92 205 103 S365 85 520 34"/><path d="M0 114 C90 114 123 62 218 76 S369 150 520 112"/><path d="M0 189 C112 189 137 135 228 130 S364 177 520 190"/><path d="M0 72 C112 72 150 161 246 157 S386 41 520 72"/><path d="M0 157 C104 157 154 36 252 48 S389 132 520 145"/></svg><span class="network-core"><b>衡渡</b><small>AI NAV</small></span><i class="network-dot dot-a"></i><i class="network-dot dot-b"></i><i class="network-dot dot-c"></i><div class="network-readout"><span id="network-flow-label">規劃進度</span><br /><b id="network-flow-value">01 / 03</b></div></div>
+          <div class="signal-column signal-column-right"><div class="signal-column-title">PLAN DIRECTIONS <small>預設方案比較起點</small></div>
+            <button class="signal-node signal-plan-node" type="button" data-signal-plan="liquidity"><span class="node-flag node-cyan">01</span><span><b>流動守成</b><small>流動性優先</small></span><strong>›</strong></button>
+            <button class="signal-node signal-plan-node" type="button" data-signal-plan="balanced"><span class="node-flag node-blue">02</span><span><b>平衡成長</b><small>平衡配置取向</small></span><strong>›</strong></button>
+            <button class="signal-node signal-plan-node" type="button" data-signal-plan="growth"><span class="node-flag node-gold">03</span><span><b>長線增值</b><small>較長期成長取向</small></span><strong>›</strong></button>
+          </div>
+        </div>
+        <div class="signal-strip"><div class="signal-card signal-main"><span class="signal-label">CURRENT RISK PROFILE</span><strong id="signal-value">平衡型</strong><small>本次問卷的初步傾向・不是風險評級</small><div class="signal-wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="signal-card"><span class="signal-label">RETURN GOAL</span><strong id="signal-return">4–6%</strong><small>由你選擇的目標區間</small><div class="signal-meter"><i></i></div></div><div class="signal-card"><span class="signal-label">SELECTED MODULES</span><strong id="signal-modules">04</strong><small>包含獨立的傳承規劃項目</small><div class="signal-stream"><span></span><span></span><span></span><span></span><span></span></div></div></div>
       </section>
 
       <section class="planner page-width" id="planner">

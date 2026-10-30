@@ -34,6 +34,7 @@ function riskProfile() {
 function updateRiskPreview() {
   const profile = riskProfile();
   $("#risk-preview-text").textContent = `${profile.name} · ${profile.detail.replace(/[。]$/, "")}`;
+  updateConsoleTelemetry();
 }
 
 function showView(view) {
@@ -56,8 +57,51 @@ function showView(view) {
   $("#step-caption").textContent = copy[0];
   $("#view-heading").textContent = copy[1];
   $("#view-description").textContent = copy[2];
+  updateConsoleTelemetry();
   if (view === 3) $("#planner").scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+function playClickEffect(event) {
+  const target = event.currentTarget;
+  const bounds = target.getBoundingClientRect();
+  const wave = document.createElement("span");
+  wave.className = "click-wave";
+  wave.style.left = `${event.clientX - bounds.left}px`;
+  wave.style.top = `${event.clientY - bounds.top}px`;
+  target.append(wave);
+  target.classList.remove("click-locked");
+  void target.offsetWidth;
+  target.classList.add("click-locked");
+  wave.addEventListener("animationend", () => wave.remove(), { once: true });
+  window.setTimeout(() => target.classList.remove("click-locked"), 650);
+}
+
+function updateConsoleTelemetry() {
+  const clock = $("#noise-clock");
+  if (clock) clock.textContent = new Date().toLocaleTimeString("en-GB", { hour12: false });
+  const signal = $("#signal-value");
+  if (signal) signal.textContent = riskProfile().name;
+  const riskDetail = $("#signal-risk-detail");
+  if (riskDetail) riskDetail.textContent = riskProfiles[riskProfile().name === "穩健型" ? "cautious" : riskProfile().name === "成長型" ? "growth" : "balanced"].preview.split(" · ")[1];
+  const returnGoal = $("#signal-return");
+  if (returnGoal) returnGoal.textContent = selectedReturn;
+  const modules = $("#signal-modules");
+  if (modules) modules.textContent = String(selectedProducts.size).padStart(2, "0");
+  const horizon = $("#signal-horizon");
+  if (horizon && $("#horizon")) horizon.textContent = `${$("#horizon").value} 年規劃期`;
+  const flowLabel = $("#network-flow-label");
+  const flowValue = $("#network-flow-value");
+  if (flowLabel && flowValue) {
+    flowLabel.textContent = currentView === 1 ? "目前步驟" : currentView === 2 ? "設定進度" : "方案已生成";
+    flowValue.textContent = `${String(currentView).padStart(2, "0")} / 03`;
+  }
+  $$('[data-signal-plan]').forEach((node) => node.classList.toggle("signal-node-active", node.dataset.signalPlan === selectedPlan));
+}
+window.setInterval(updateConsoleTelemetry, 1000);
+updateConsoleTelemetry();
+
+$$('[data-question], [data-product], [data-plan], [data-return], [data-signal-plan], #to-step-two, #back-to-one, #generate-plan, #edit-plan, #restart-top, #restart-bottom, #save-summary, #ai-submit')
+  .forEach((button) => button.addEventListener("pointerdown", playClickEffect));
 
 function formatMoney(value, currency, maximumFractionDigits = 0) {
   try {
@@ -292,6 +336,7 @@ $$('[data-product]').forEach((button) => button.addEventListener("click", () => 
   button.classList.toggle("selected", selected);
   button.setAttribute("aria-pressed", String(selected));
   $("#form-error").hidden = true;
+  updateConsoleTelemetry();
 }));
 
 $$('[data-plan]').forEach((button) => button.addEventListener("click", () => {
@@ -301,7 +346,22 @@ $$('[data-plan]').forEach((button) => button.addEventListener("click", () => {
     option.classList.toggle("selected", selected);
     option.setAttribute("aria-pressed", String(selected));
   });
+  updateConsoleTelemetry();
 }));
+
+$$('[data-signal-plan]').forEach((button) => button.addEventListener("click", () => {
+  selectedPlan = button.dataset.signalPlan;
+  $$('[data-plan]').forEach((option) => {
+    const selected = option.dataset.plan === selectedPlan;
+    option.classList.toggle("selected", selected);
+    option.setAttribute("aria-pressed", String(selected));
+  });
+  updateConsoleTelemetry();
+  showView(2);
+  $("#planner").scrollIntoView({ behavior: "smooth", block: "start" });
+}));
+
+$("#horizon").addEventListener("change", updateConsoleTelemetry);
 
 $$('[data-return]').forEach((button) => button.addEventListener("click", () => {
   selectedReturn = button.dataset.return;
@@ -310,6 +370,7 @@ $$('[data-return]').forEach((button) => button.addEventListener("click", () => {
     option.classList.toggle("selected", selected);
     option.setAttribute("aria-pressed", String(selected));
   });
+  updateConsoleTelemetry();
 }));
 
 $("#to-step-two").addEventListener("click", () => showView(2));
