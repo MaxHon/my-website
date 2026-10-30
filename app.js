@@ -221,9 +221,7 @@ function appendAIMessage(role, content) {
 }
 
 async function requestAI(messages) {
-  if (window.location.hostname.endsWith("github.io")) {
-    throw new Error("GitHub Pages 版本只提供靜態互動示意；AI 對話請在本機執行 npm start。 ");
-  }
+  if (window.location.hostname.endsWith("github.io")) return answerWithStaticGuide(messages);
   const response = await fetch(`${API_BASE}/api/plan-insight`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -233,6 +231,32 @@ async function requestAI(messages) {
   if (!response.ok) throw new Error(data.error || "服務暫時無法回覆，請稍後再試。");
   if (typeof data.answer !== "string" || !data.answer.trim()) throw new Error("服務沒有返回有效文字，請稍後再試。");
   return data.answer.trim();
+}
+
+function answerWithStaticGuide(messages) {
+  const context = currentPlanContext();
+  const question = messages.at(-1)?.content || "";
+  const lower = question.toLowerCase();
+  const allocation = context.allocation.map(({ name, percent }) => `${name} ${percent}%`).join("、") || "尚未選擇資產配置模組";
+  const mismatch = (context.riskProfile === "穩健型" && context.planName === "長線增值") || (context.riskProfile === "成長型" && context.planName === "流動守成");
+  let focus;
+
+  if (/風險|波動|下跌|虧損|回撤/.test(question)) {
+    focus = `你目前選擇的是${context.riskProfile}取向，方案為「${context.planName}」。建議先確認自己能接受的短期回撤，以及急用資金是否與投資部分分開；基金比例越高，淨值波動通常越明顯。`;
+  } else if (/回報|收益|收益率|目標|賺/.test(question)) {
+    focus = `你設定的目標區間是 ${context.returnGoal}，這代表期望而非預測或保證。請和顧問核對目標是否與${context.riskProfile}取向、${context.horizon} 年規劃期及可承受波動相符，並一併考慮費用和通脹。`;
+  } else if (/保險|保障|受益人/.test(question)) {
+    focus = "保障安排應先看家庭責任、已有保障缺口、保費負擔和保單條款，不宜只按投資回報比較。可請合資格顧問說明保障範圍、除外責任、退保及跨境理賠限制。";
+  } else if (/傳承|遺產|稅|跨境|受益/.test(question)) {
+    focus = "跨境傳承會受居住地、資產所在地、持有方式及當地法律稅務規則影響。請由相關司法管轄區的合資格法律與稅務專業人士核實，不要單憑這份示意作決定。";
+  } else if (/定期|存款|流動|急用/.test(question)) {
+    focus = "定期存款要比較期限、提前提取條件、續存利率和存款保障安排。先預留緊急備用金，再按資金用途安排期限，避免把近期會用到的資金鎖定。";
+  } else {
+    focus = `按目前資料，你的方案是「${context.planName}」，配置示意為${allocation}，規劃期 ${context.horizon} 年。可以先比較各項費用、流動限制及最差情境下的承受能力，再決定是否需要調整。`;
+  }
+
+  const alignment = mismatch ? `目前${context.riskProfile}取向與「${context.planName}」可能需要再核對。` : "";
+  return Promise.resolve(`${focus}${alignment} 這是靜態示意助理的規則式回覆，並非雲端 AI 或個人化投資建議。`);
 }
 
 async function generateAIAnalysis() {
@@ -247,7 +271,7 @@ async function generateAIAnalysis() {
     const answer = await requestAI(aiConversation);
     pending.textContent = answer;
     aiConversation.push({ role: "assistant", content: answer });
-    status.textContent = "分析已生成";
+    status.textContent = window.location.hostname.endsWith("github.io") ? "示意分析已生成" : "分析已生成";
   } catch (requestError) {
     pending.remove();
     status.textContent = "分析暫不可用";
@@ -280,7 +304,7 @@ async function submitAIQuestion(event) {
     const answer = await requestAI(aiConversation);
     pending.textContent = answer;
     aiConversation.push({ role: "assistant", content: answer });
-    status.textContent = "已回覆";
+    status.textContent = window.location.hostname.endsWith("github.io") ? "示意回覆已生成" : "已回覆";
   } catch (requestError) {
     pending.remove();
     aiConversation.pop();
